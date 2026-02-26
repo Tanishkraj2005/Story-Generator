@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Story Generator – Powered by Gemini</title>
+  <meta name="description"
+    content="Generate immersive AI-powered stories in any genre using Google Gemini. Just type your idea, pick a genre & length, and let the magic happen." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- API Key Modal (shown on first visit or on "Change API Key") -->
+  <div id="api-modal-overlay" class="modal-overlay">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-icon">🔑</div>
+      <h2 id="modal-title">Enter Your Gemini API Key</h2>
+      <p class="modal-subtitle">
+        The app already works with a built-in default key. You can optionally enter <strong>your own free Gemini API
+          key</strong> below — it will be used instead and stored only in your browser.
+      </p>
+      <input type="password" id="api-key-input" placeholder="AIza..." autocomplete="off" spellcheck="false" />
+      <div id="api-key-error" class="api-key-error" aria-live="polite"></div>
+      <div class="modal-actions">
+        <button id="show-key-toggle" class="btn-ghost" title="Toggle visibility">👁 Show</button>
+        <button id="save-api-key-btn" class="btn-primary" id="save-api-btn">Save &amp; Continue</button>
+      </div>
+      <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener" class="get-key-link">
+        🔗 Get a free Gemini API key from Google AI Studio
+      </a>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app">
+
+    <!-- Header -->
+    <header>
+      <div class="header-left">
+        <span class="logo-icon">✨</span>
+        <div>
+          <h1>AI Story Generator</h1>
+          <p class="tagline">Powered by Google Gemini</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <button id="theme-toggle-btn" class="btn-theme-toggle" title="Toggle dark/light mode" aria-label="Toggle theme">
+          🌙 Dark
+        </button>
+        <button id="change-api-btn" class="btn-change-api" title="Change your Gemini API key"
+          aria-label="Change API Key">
+          🔑 Change API Key
+        </button>
+      </div>
+    </header>
+
+    <!-- Controls -->
+    <div id="controls">
+      <div class="control-group">
+        <label for="genre-select">Genre</label>
+        <select id="genre-select">
+          <option value="fantasy">🧙 Fantasy</option>
+          <option value="science fiction">🚀 Science Fiction</option>
+          <option value="mystery">🔍 Mystery</option>
+          <option value="adventure">⚔️ Adventure</option>
+          <option value="fairy tale">🧚 Fairy Tale</option>
+          <option value="horror">👻 Horror</option>
+          <option value="romance">💕 Romance</option>
+          <option value="thriller">🎯 Thriller</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="length-select">Length</label>
+        <select id="length-select">
+          <option value="short">📄 Short (~300 words)</option>
+          <option value="medium" selected>📖 Medium (~600 words)</option>
+          <option value="long">📚 Long (~1000 words)</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="tone-select">Tone</label>
+        <select id="tone-select">
+          <option value="dramatic">🎭 Dramatic</option>
+          <option value="humorous">😄 Humorous</option>
+          <option value="dark">🌑 Dark</option>
+          <option value="whimsical">🌈 Whimsical</option>
+          <option value="suspenseful">😰 Suspenseful</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Chat / Story Display Area -->
+    <div id="chat-container" role="log" aria-live="polite" aria-label="Story output"></div>
+
+    <!-- Input Box -->
+    <div id="input-box">
+      <input type="text" id="user-input"
+        placeholder="Type your story idea… e.g. A detective finds a notebook that predicts crimes" autocomplete="off"
+        aria-label="Story idea input" />
+      <button id="send-button" aria-label="Generate story">
+        <span class="btn-icon">🪄</span>
+        <span class="btn-text">Create Story</span>
+      </button>
+    </div>
+
+    <footer>
+      <p>Stories are AI-generated. Press <kbd>Enter</kbd> to generate. Your API key is stored locally.</p>
+    </footer>
+
+  </div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
